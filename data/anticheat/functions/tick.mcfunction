@@ -14,6 +14,12 @@ execute as @a[scores={walk=75..}] run tellraw @a[scores={notify=2..}] [{"text":"
 execute as @a[scores={walk=380..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Speed erkannt!","color":"dark_red"},{"text":" {walk}","color":"red"}]
 execute as @a[scores={run=400..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Speed erkannt!","color":"dark_red"},{"text":" {run}","color":"red"}]
 
+execute as @a at @s if block ~-.5 ~ ~-.5 bubble_column run scoreboard players set @s fly -50
+execute as @a at @s if block ~-.5 ~ ~.5 bubble_column run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~-.5 bubble_column run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~.5 bubble_column run scoreboard players set @s fly -50
+execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @s dive 100
+execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @s swim 150
 execute as @a at @s if block ~ ~0.001 ~ water run scoreboard players set @s fly 1
 execute as @a at @s if block ~ ~0.001 ~ iron_trapdoor run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ ladder run scoreboard players set @s fly 0
@@ -97,8 +103,8 @@ execute as @a[scores={flags=23..}] at @s run spreadplayers ~ ~ 0 1 false @s
 scoreboard players set @a[scores={flags=23..}] fly 8
 scoreboard players set @a[scores={flags=23..}] flags 0
 
-execute as @a[scores={fly=15..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {fly} ","color":"gray"},{"score":{"name":"@s","objective":"fly"},"color":"green"}]
 execute as @a[scores={fly=15..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={fly=15..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {fly}","color":"gray"}]
 execute as @a[scores={fly=15..}] at @e[type=marker,tag=Marvin+,sort=nearest,limit=1] if block ~ ~-1 ~ air run tp @p ~ ~ ~
 execute as @a[scores={fly=15..}] run scoreboard players remove @s fly 3
 
@@ -151,15 +157,15 @@ scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] dive
 
 execute as @a[scores={swim=600..}] run kill @s
-execute as @a[scores={swim=64}] at @s run tp @e[tag=Marvin+,sort=nearest,limit=1] @s
-execute as @a[scores={swim=65..}] at @s run tp @s @e[tag=Marvin+,sort=nearest,limit=1]
-execute as @a[scores={swim=65..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]}","color":"gray"}]
+execute as @a[scores={swim=..70}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={swim=71..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={swim=71..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]}","color":"gray"}]
 scoreboard players reset @a swim
 
 execute as @a[scores={dive=600..}] run kill @s
-execute as @a[scores={dive=54}] at @s run tp @e[tag=Marvin+,sort=nearest,limit=1] @s
-execute as @a[scores={dive=55..}] at @s run tp @s @e[tag=Marvin+,sort=nearest,limit=1]
-execute as @a[scores={dive=55..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [dive]}","color":"gray"}]
+execute as @a[scores={dive=..99}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={dive=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={dive=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [dive]}","color":"gray"}]
 scoreboard players reset @a dive
 
 schedule function anticheat:tick 1t
