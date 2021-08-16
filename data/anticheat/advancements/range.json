@@ -3,12 +3,17 @@
     "requirement": {
       "trigger": "minecraft:player_hurt_entity",
       "conditions": {
+        "damage": {
+          "type": {
+            "is_magic": false,
+            "is_projectile": false
+          }
+        },
         "entity": [
           {
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "minecraft:player",
               "distance": {
                 "absolute": {
                   "min": 5,
