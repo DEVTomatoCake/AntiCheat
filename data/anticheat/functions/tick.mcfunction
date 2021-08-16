@@ -75,12 +75,11 @@ scoreboard players set @a[scores={damage=51..}] damage 50
 scoreboard players set @a[scores={damage=20..}] fly 1
 scoreboard players set @a[scores={damage=20..}] dive 1
 scoreboard players set @a[scores={damage=20..}] swim 1
-scoreboard players reset @a[scores={damage=0}] damage
+scoreboard players reset @a[scores={damage=1..}] flyM
 
 execute as @a at @s if block ~ ~-1 ~ sand run scoreboard players remove @s flyM 10
 execute as @a at @s if block ~ ~-1 ~ gravel run scoreboard players remove @s flyM 10
 
-scoreboard players reset @a[scores={damage=1..}] flyM
 scoreboard players remove @a[scores={run=1..}] flyM 25
 scoreboard players reset @a[gamemode=spectator] flyM
 scoreboard players reset @a[gamemode=creative] flyM
