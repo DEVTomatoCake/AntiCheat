@@ -70,11 +70,11 @@ execute at @a[scores={fly=0}] run summon marker ~ ~ ~ {Tags:["Marvin+"]}
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~-1 ~ slime_block run scoreboard players set @p fly 10
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~-1 ~ slime_block run tp @s @p
 execute as @a[scores={fly=0}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
-execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ air if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk 1}"}]
+execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ air if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk}"}]
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ air if block ~ ~ ~ air run tp @s @s
-execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ water if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk 2}"}]
+execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ water if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk}"}]
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ water if block ~ ~ ~ air run tp @s @s
-execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ lava if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk 3}"}]
+execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ lava if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk}"}]
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ lava if block ~ ~ ~ air run tp @s @s
 
 scoreboard players set @a[scores={damage=1..19}] damage 50
