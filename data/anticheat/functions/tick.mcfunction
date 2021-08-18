@@ -14,6 +14,14 @@ execute as @a[scores={walk=75..}] run tellraw @a[scores={notify=2..}] [{"text":"
 execute as @a[scores={walk=380..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Speed erkannt!","color":"dark_red"},{"text":" {walk}","color":"red"}]
 execute as @a[scores={run=400..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Speed erkannt!","color":"dark_red"},{"text":" {run}","color":"red"}]
 
+execute as @a at @s if block ~-.5 ~ ~-.5 water run scoreboard players set @s fly -50
+execute as @a at @s if block ~-.5 ~ ~.5 water run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~-.5 water run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~.5 water run scoreboard players set @s fly -50
+execute as @a at @s if block ~-.5 ~ ~-.5 lava run scoreboard players set @s fly -50
+execute as @a at @s if block ~-.5 ~ ~.5 lava run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~-.5 lava run scoreboard players set @s fly -50
+execute as @a at @s if block ~.5 ~ ~.5 lava run scoreboard players set @s fly -50
 execute as @a at @s if block ~-.5 ~ ~-.5 bubble_column run scoreboard players set @s fly -50
 execute as @a at @s if block ~-.5 ~ ~.5 bubble_column run scoreboard players set @s fly -50
 execute as @a at @s if block ~.5 ~ ~-.5 bubble_column run scoreboard players set @s fly -50
@@ -21,6 +29,7 @@ execute as @a at @s if block ~.5 ~ ~.5 bubble_column run scoreboard players set 
 execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @s dive 100
 execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @s swim 150
 execute as @a at @s if block ~ ~0.001 ~ water run scoreboard players set @s fly 1
+execute as @a at @s if block ~ ~0.001 ~ lava run scoreboard players set @s fly 1
 execute as @a at @s if block ~ ~0.001 ~ iron_trapdoor run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ ladder run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ vine run scoreboard players set @s fly 1
@@ -156,13 +165,13 @@ scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] dive
 
 execute as @a[scores={swim=600..}] run kill @s
-execute as @a[scores={swim=..70}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
-execute as @a[scores={swim=71..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
-execute as @a[scores={swim=71..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]}","color":"gray"}]
+execute as @a[scores={swim=..75}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={swim=91..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={swim=91..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]} ","color":"gray"},{"score":{"name":"@s","objective":"swim"},"color":"green"}]
 scoreboard players reset @a swim
 
 execute as @a[scores={dive=600..}] run kill @s
-execute as @a[scores={dive=..99}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={dive=..80}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={dive=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={dive=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [dive]}","color":"gray"}]
 scoreboard players reset @a dive
