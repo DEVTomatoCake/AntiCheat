@@ -89,6 +89,12 @@ scoreboard players reset @a[scores={damage=1..}] flyM
 execute as @a at @s if block ~ ~-1 ~ sand run scoreboard players remove @s flyM 10
 execute as @a at @s if block ~ ~-1 ~ gravel run scoreboard players remove @s flyM 10
 
+kill @a[scores={flyM=1250..}]
+execute as @a[scores={flyM=850..}] run tellraw @s [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Teleport erkannt!","color":"dark_red"}]
+execute as @a[scores={flyM=850..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Teleport erkannt!","color":"dark_red"}]
+execute as @a[scores={flyM=850..}] run effect give @s weakness 3 255 true
+execute as @a[scores={flyM=850..}] run effect give @s mining_fatigue 3 255 true
+
 scoreboard players remove @a[scores={run=1..}] flyM 25
 scoreboard players reset @a[gamemode=spectator] flyM
 scoreboard players reset @a[gamemode=creative] flyM
@@ -101,7 +107,8 @@ execute as @a[scores={run=1..},nbt={OnGround:1b}] at @s if block ~ ~ ~ air if bl
 
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~ ~ air if block ~1 ~-1 ~1 air if block ~1 ~-1 ~ air if block ~1 ~-1 ~-1 air if block ~-1 ~-1 ~-1 air if block ~-1 ~-1 ~1 air if block ~-1 ~-1 ~ air if block ~ ~-1 ~-1 air if block ~ ~-1 ~1 air if block ~1 ~-1 ~ air if block ~-1 ~-1 ~ air if block ~ ~-1 ~ air run tp @s ~ ~-0.9 ~
 
-kill @a[scores={flyM=1250..}]
+scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] fly
+#scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] fly
 
 execute as @a[scores={fly=..12}] run scoreboard players set @s flags 0
 execute as @a[scores={fly=15..400}] run scoreboard players add @s flags 1
@@ -115,13 +122,6 @@ execute as @a[scores={fly=15..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort
 execute as @a[scores={fly=15..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {fly}","color":"gray"}]
 execute as @a[scores={fly=15..}] at @e[type=marker,tag=Marvin+,sort=nearest,limit=1] if block ~ ~-1 ~ air run tp @p ~ ~ ~
 execute as @a[scores={fly=15..}] run scoreboard players remove @s fly 3
-
-execute as @a[scores={flyM=850..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Teleport erkannt!","color":"dark_red"}]
-execute as @a[scores={flyM=850..}] run tellraw @s [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Teleport erkannt!","color":"dark_red"}]
-execute as @a[scores={flyM=850..}] run effect give @s weakness 3 255 true
-execute as @a[scores={flyM=850..}] run effect give @s mining_fatigue 3 255 true
-
-scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] fly
 
 execute as @a[scores={sneak=1..,run=35..}] run tp @s @s
 execute as @a[scores={sneak=1..,run=35..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:1} ","color":"red"},{"text":"[run,sneak] ","color":"red"},{"score":{"name":"@s","objective":"run"},"color":"green"}]
