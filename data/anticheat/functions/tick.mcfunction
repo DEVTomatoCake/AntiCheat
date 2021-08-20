@@ -89,7 +89,7 @@ scoreboard players reset @a[scores={damage=1..}] flyM
 execute as @a at @s if block ~ ~-1 ~ sand run scoreboard players remove @s flyM 10
 execute as @a at @s if block ~ ~-1 ~ gravel run scoreboard players remove @s flyM 10
 
-kill @a[scores={flyM=1250..}]
+scoreboard players set @a[scores={flyM=1250..}] actimeout 1200
 execute as @a[scores={flyM=850..}] run tellraw @s [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Teleport erkannt!","color":"dark_red"}]
 execute as @a[scores={flyM=850..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Teleport erkannt!","color":"dark_red"}]
 execute as @a[scores={flyM=850..}] run effect give @s weakness 3 255 true
@@ -164,13 +164,13 @@ scoreboard players reset @a[scores={fly=401..}] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] dive
 
-execute as @a[scores={swim=600..}] run kill @s
+scoreboard players set @a[scores={swim=600..}] actimeout 1200
 execute as @a[scores={swim=..75}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={swim=91..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={swim=91..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]} ","color":"gray"},{"score":{"name":"@s","objective":"swim"},"color":"green"}]
 scoreboard players reset @a swim
 
-execute as @a[scores={dive=600..}] run kill @s
+scoreboard players set @a[scores={dive=600..}] actimeout 1200
 execute as @a[scores={dive=..80}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={dive=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={dive=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [dive]}","color":"gray"}]
