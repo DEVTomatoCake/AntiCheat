@@ -43,8 +43,13 @@ execute as @a at @s if block ~ ~-1.9 ~ ice run scoreboard players remove @s fly 
 execute as @a at @s if block ~ ~ ~ cobweb run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~-1 ~ cobweb run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~1 ~ cobweb run scoreboard players set @s fly 0
+execute as @a at @s if block ~-.5 ~ ~-.5 cobweb run scoreboard players set @s fly 0
+execute as @a at @s if block ~-.5 ~ ~.5 cobweb run scoreboard players set @s fly 0
+execute as @a at @s if block ~.5 ~ ~-.5 cobweb run scoreboard players set @s fly 0
+execute as @a at @s if block ~.5 ~ ~.5 cobweb run scoreboard players set @s fly 0
 scoreboard players set @a[scores={damage=1..}] fly 0
 execute as @a[nbt={FallFlying:1b}] run scoreboard players set @s fly 0
+execute as @a if data entity @s RootVehicle run scoreboard players set @s fly 0
 
 execute as @a[nbt={ActiveEffects:[{Id:25b}]}] run scoreboard players remove @s fly 44
 execute as @a[nbt={ActiveEffects:[{Amplifier:0b,Id:1b}]}] run scoreboard players remove @s fly 5
@@ -54,6 +59,10 @@ execute as @a[nbt={ActiveEffects:[{Amplifier:2b,Id:1b}]}] run scoreboard players
 execute as @a[nbt={ActiveEffects:[{Amplifier:0b,Id:1b}]}] run scoreboard players remove @s flyM 5
 execute as @a[nbt={ActiveEffects:[{Amplifier:1b,Id:1b}]}] run scoreboard players remove @s flyM 10
 execute as @a[nbt={ActiveEffects:[{Amplifier:2b,Id:1b}]}] run scoreboard players remove @s flyM 15
+
+execute as @a[nbt={ActiveEffects:[{Id:30b}],Inventory:[{Slot:100b,tag:{Enchantments:[{id:"minecraft:depth_strider"}]}}]}] run scoreboard players remove @s swim 48
+execute as @a[nbt={ActiveEffects:[{Id:30b}],Inventory:[{Slot:100b,tag:{Enchantments:[{id:"minecraft:depth_strider"}]}}]}] at @s unless block ~ ~-1 ~ water run scoreboard players remove @s dive 72
+execute as @a[nbt={ActiveEffects:[{Id:30b}],Inventory:[{Slot:100b,tag:{Enchantments:[{id:"minecraft:depth_strider"}]}}]}] at @s if block ~ ~-1 ~ water run scoreboard players remove @s dive 2
 
 execute as @a[scores={run=15..},nbt={ActiveEffects:[{Amplifier:1b,Id:1b}]}] run scoreboard players remove @s run 15
 execute as @a[scores={walk=15..},nbt={ActiveEffects:[{Amplifier:1b,Id:1b}]}] run scoreboard players remove @s walk 15
@@ -162,15 +171,19 @@ scoreboard players reset @a[scores={fly=401..}] dive
 scoreboard players reset @a[scores={fly=401..}] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] swim
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] dive
+scoreboard players remove @a[nbt={SelectedItem:{id:"minecraft:trident"}}] dive 500
+scoreboard players remove @a[nbt={SelectedItem:{id:"minecraft:trident"}}] swim 500
+scoreboard players remove @a[nbt={Inventory:[{Slot:-106b,id:"minecraft:trident"}]}] dive 500
+scoreboard players remove @a[nbt={Inventory:[{Slot:-106b,id:"minecraft:trident"}]}] swim 500
 
 scoreboard players set @a[scores={swim=600..}] actimeout 1200
-execute as @a[scores={swim=..75}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={swim=..70}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={swim=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={swim=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]}","color":"gray"}]
 scoreboard players reset @a swim
 
 scoreboard players set @a[scores={dive=600..}] actimeout 1200
-execute as @a[scores={dive=..80}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
+execute as @a[scores={dive=..70}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={dive=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={dive=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [dive]}","color":"gray"}]
 scoreboard players reset @a dive
