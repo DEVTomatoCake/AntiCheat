@@ -9,6 +9,11 @@ scoreboard objectives add walk minecraft.custom:minecraft.walk_one_cm {"text":"W
 scoreboard objectives add run minecraft.custom:minecraft.sprint_one_cm {"text":"Run","color":"yellow"}
 scoreboard objectives add damage minecraft.custom:minecraft.damage_taken {"text":"DamageTaken","color":"yellow"}
 scoreboard objectives add flags dummy {"text":"Flags","color":"yellow"}
+scoreboard players reset @a flyM
+scoreboard players reset @a run
+scoreboard players reset @a walk
+scoreboard players reset @a swim
+scoreboard players reset @a dive
 
 scoreboard players set @a notify 2
 tellraw @a[scores={notify=1..}] {"text":"Anticheat wurde geladen!","color":"gold"}
