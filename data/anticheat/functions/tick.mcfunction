@@ -46,7 +46,6 @@ execute as @a at @s if block ~ ~1 ~ cobweb run scoreboard players set @s fly 0
 scoreboard players set @a[scores={damage=1..}] fly 0
 execute as @a[nbt={FallFlying:1b}] run scoreboard players set @s fly 0
 
-execute as @a[nbt={ActiveEffects:[{Amplifier:-1b,Id:8b}]}] run scoreboard players remove @s fly 15
 execute as @a[nbt={ActiveEffects:[{Id:25b}]}] run scoreboard players remove @s fly 44
 execute as @a[nbt={ActiveEffects:[{Amplifier:0b,Id:1b}]}] run scoreboard players remove @s fly 5
 execute as @a[nbt={ActiveEffects:[{Amplifier:1b,Id:1b}]}] run scoreboard players remove @s fly 10
@@ -64,12 +63,11 @@ execute as @a[scores={walk=20..},nbt={ActiveEffects:[{Amplifier:2b,Id:1b}]}] run
 execute as @a[scores={run=85..}] run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={walk=75..}] run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 
-execute at @a[scores={fly=0}] run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] 0 -1000 0
-execute at @a[scores={fly=0}] run summon marker ~ ~ ~ {Tags:["Marvin+"]}
+execute at @a[scores={fly=..0}] run kill @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute at @a[scores={fly=..0}] run summon marker ~ ~ ~ {Tags:["Marvin+"]}
 
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~-1 ~ slime_block run scoreboard players set @p fly 10
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~-1 ~ slime_block run tp @s @p
-execute as @a[scores={fly=0}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ air if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk}"}]
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ air if block ~ ~ ~ air run tp @s @s
 execute as @a[scores={walk=3}] at @s if block ~ ~-1 ~ water if block ~ ~ ~ air run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Safewalk}"}]
@@ -92,12 +90,13 @@ execute as @a at @s if block ~ ~-1 ~ gravel run scoreboard players remove @s fly
 scoreboard players set @a[scores={flyM=1250..}] actimeout 1200
 execute as @a[scores={flyM=850..}] run tellraw @s [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Teleport erkannt!","color":"dark_red"}]
 execute as @a[scores={flyM=850..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"selector":"@s"},{"text":" Teleport erkannt!","color":"dark_red"}]
-execute as @a[scores={flyM=850..}] run effect give @s weakness 3 255 true
-execute as @a[scores={flyM=850..}] run effect give @s mining_fatigue 3 255 true
+effect give @a[scores={flyM=850..}] weakness 3 255 true
+effect give @a[scores={flyM=850..}] mining_fatigue 3 255 true
+
+scoreboard players reset @a[gamemode=!survival,gamemode=!adventure] flyM
+scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] flyM
 
 scoreboard players remove @a[scores={run=1..}] flyM 25
-scoreboard players reset @a[gamemode=spectator] flyM
-scoreboard players reset @a[gamemode=creative] flyM
 execute as @a[scores={flyM=85..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {SpeedFly}","color":"gray"}]
 execute as @a[scores={flyM=85..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 scoreboard players reset @a flyM
@@ -108,7 +107,7 @@ execute as @a[scores={run=1..},nbt={OnGround:1b}] at @s if block ~ ~ ~ air if bl
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~ ~ air if block ~1 ~-1 ~1 air if block ~1 ~-1 ~ air if block ~1 ~-1 ~-1 air if block ~-1 ~-1 ~-1 air if block ~-1 ~-1 ~1 air if block ~-1 ~-1 ~ air if block ~ ~-1 ~-1 air if block ~ ~-1 ~1 air if block ~1 ~-1 ~ air if block ~-1 ~-1 ~ air if block ~ ~-1 ~ air run tp @s ~ ~-0.9 ~
 
 scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] fly
-#scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] fly
+scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] fly
 
 execute as @a[scores={fly=..12}] run scoreboard players set @s flags 0
 execute as @a[scores={fly=15..400}] run scoreboard players add @s flags 1
@@ -130,7 +129,7 @@ execute as @a[scores={sneak=1..,walk=20..}] run tp @s @s
 tellraw @a[scores={sneak=1..,walk=20..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"text":"Du sendest zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:2}","color":"yellow"}]
 execute as @a[scores={sneak=1..,walk=20..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:2} ","color":"yellow"},{"text":"[walk,sneak]","color":"red"}]
 
-execute as @a[scores={sneak=1..,sneakcm=31..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={sneak=1..,sneakcm=31..}] run tp @s @s
 tellraw @a[scores={sneak=1..,sneakcm=31..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"text":"Du sendest zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:3}","color":"yellow"}]
 execute as @a[scores={sneak=1..,sneakcm=31..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:3} ","color":"yellow"},{"text":"[speed,sneak] ","color":"red"},{"score":{"name":"@s","objective":"sneakcm"},"color":"green"}]
 
@@ -166,8 +165,8 @@ scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] dive
 
 scoreboard players set @a[scores={swim=600..}] actimeout 1200
 execute as @a[scores={swim=..75}] at @s run tp @e[type=marker,tag=Marvin+,sort=nearest,limit=1] @s
-execute as @a[scores={swim=91..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
-execute as @a[scores={swim=91..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]} ","color":"gray"},{"score":{"name":"@s","objective":"swim"},"color":"green"}]
+execute as @a[scores={swim=100..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
+execute as @a[scores={swim=100..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {Waterspeed [swim]}","color":"gray"}]
 scoreboard players reset @a swim
 
 scoreboard players set @a[scores={dive=600..}] actimeout 1200
