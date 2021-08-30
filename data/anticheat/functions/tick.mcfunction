@@ -49,7 +49,7 @@ execute as @a at @s if block ~.5 ~ ~-.5 cobweb run scoreboard players set @s fly
 execute as @a at @s if block ~.5 ~ ~.5 cobweb run scoreboard players set @s fly 0
 scoreboard players set @a[scores={damage=1..}] fly 0
 execute as @a[nbt={FallFlying:1b}] run scoreboard players set @s fly 0
-execute as @a if data entity @s RootVehicle run scoreboard players set @s fly 0
+execute unless score #entityflight settings matches 0 as @a if data entity @s RootVehicle run scoreboard players set @s fly 0
 
 execute as @a[nbt={ActiveEffects:[{Id:25b}]}] run scoreboard players remove @s fly 44
 execute as @a[nbt={ActiveEffects:[{Amplifier:0b,Id:1b}]}] run scoreboard players remove @s fly 5
