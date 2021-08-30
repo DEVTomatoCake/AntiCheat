@@ -104,6 +104,8 @@ effect give @a[scores={flyM=850..}] mining_fatigue 3 255 true
 
 scoreboard players reset @a[gamemode=!survival,gamemode=!adventure] flyM
 scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] flyM
+scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] fly
+scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] fly
 
 scoreboard players remove @a[scores={run=1..}] flyM 25
 execute as @a[scores={flyM=85..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {SpeedFly}","color":"gray"}]
@@ -114,9 +116,6 @@ execute as @a[nbt={OnGround:1b}] at @s if block ~ ~ ~ air if block ~1 ~-1 ~1 air
 execute as @a[scores={run=1..},nbt={OnGround:1b}] at @s if block ~ ~ ~ air if block ~1 ~-1 ~1 air if block ~1 ~-1 ~ air if block ~1 ~-1 ~-1 air if block ~-1 ~-1 ~-1 air if block ~-1 ~-1 ~1 air if block ~-1 ~-1 ~ air if block ~ ~-1 ~-1 air if block ~ ~-1 ~1 air if block ~1 ~-1 ~ air if block ~-1 ~-1 ~ air if block ~ ~-1 ~ air run scoreboard players add @s fly 10
 
 execute as @e[type=marker,tag=Marvin+] at @s if block ~ ~ ~ air if block ~1 ~-1 ~1 air if block ~1 ~-1 ~ air if block ~1 ~-1 ~-1 air if block ~-1 ~-1 ~-1 air if block ~-1 ~-1 ~1 air if block ~-1 ~-1 ~ air if block ~ ~-1 ~-1 air if block ~ ~-1 ~1 air if block ~1 ~-1 ~ air if block ~-1 ~-1 ~ air if block ~ ~-1 ~ air run tp @s ~ ~-0.9 ~
-
-scoreboard players reset @a[gamemode=!adventure,gamemode=!survival] fly
-scoreboard players reset @a[nbt={abilities:{mayfly:1b}}] fly
 
 execute as @a[scores={fly=..12}] run scoreboard players set @s flags 0
 execute as @a[scores={fly=15..400}] run scoreboard players add @s flags 1
@@ -164,8 +163,8 @@ execute as @a[scores={run=10..}] at @s if block ~ ~-0.8 ~ water if block ~1 ~-0.
 execute as @a[scores={run=10..}] at @s if block ~ ~-0.8 ~ water if block ~1 ~-0.8 ~ water if block ~-1 ~-0.8 ~ water if block ~ ~-0.8 ~1 water if block ~ ~-0.8 ~-1 water if block ~1 ~-0.8 ~1 water if block ~1 ~-0.8 ~-1 water if block ~-1 ~-0.8 ~1 water if block ~-1 ~-0.8 ~-1 water if block ~ ~0.49 ~ air if block ~ ~0.49 ~ air if block ~1 ~0.49 ~ air if block ~-1 ~0.49 ~ air if block ~ ~0.49 ~1 air if block ~ ~0.49 ~-1 air if block ~1 ~0.49 ~1 air if block ~-1 ~0.49 ~-1 air if block ~1 ~0.49 ~-1 air if block ~-1 ~0.49 ~1 air run tp @s ~ ~-1 ~ ~180 ~
 execute as @a[scores={walk=10..}] at @s if block ~ ~-0.8 ~ water if block ~1 ~-0.8 ~ water if block ~-1 ~-0.8 ~ water if block ~ ~-0.8 ~1 water if block ~ ~-0.8 ~-1 water if block ~1 ~-0.8 ~1 water if block ~1 ~-0.8 ~-1 water if block ~-1 ~-0.8 ~1 water if block ~-1 ~-0.8 ~-1 water if block ~ ~0.49 ~ air if block ~ ~0.49 ~ air if block ~1 ~0.49 ~ air if block ~-1 ~0.49 ~ air if block ~ ~0.49 ~1 air if block ~ ~0.49 ~-1 air if block ~1 ~0.49 ~1 air if block ~-1 ~0.49 ~-1 air if block ~1 ~0.49 ~-1 air if block ~-1 ~0.49 ~1 air run tp @s ~ ~-1 ~ ~180 ~
 
-scoreboard players reset @a run
 scoreboard players reset @a walk
+scoreboard players reset @a run
 
 scoreboard players reset @a[scores={fly=401..}] dive
 scoreboard players reset @a[scores={fly=401..}] swim
