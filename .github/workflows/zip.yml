@@ -27,6 +27,8 @@ jobs:
           UPLOAD_URL="${UPLOAD_URL:1:545}&directory=/world/datapacks"
           curl -X POST -F files=@datapack.zip "$UPLOAD_URL"
           echo "Uploaded the new datapack to the test server."
+          curl -H "Authorization: Bearer $API_KEY" -X POST "https://webinterface.chaoshosting.tk/api/client/servers/$SERVER/command" -d '{"command":"reload"}'
+          echo "Executed /reload after upload."
 
       - name: Delete old release
         uses: larryjoelane/delete-release-action@v1.0.22
@@ -35,6 +37,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
