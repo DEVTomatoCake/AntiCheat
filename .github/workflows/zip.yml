@@ -1,0 +1,60 @@
+name: Build zip
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+        
+      - name: Create resourcepack zip
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r datapack.zip data pack.mcmeta README.md
+          
+      - name: Upload to test server
+        env:
+          API_KEY: ${{ secrets.PTERODACTYL_PANEL_API_KEY }}
+          SERVER: ${{ secrets.PTERODACTYL_SERVER }}
+        run: |
+          SUM=`sha1sum datapack.zip | awk '{ print $1 }'`
+          echo -e "\n#### SHA1 Checksum\n\n\`\`\`\n$SUM\n\`\`\`\n" >> ./RELEASE_CHANGELOG
+          echo "Calculated SHA1 Checksum: $SUM."
+          UPLOAD_JSON=`curl -H "Authorization: Bearer $API_KEY" "https://webinterface.chaoshosting.tk/api/client/servers/$SERVER/files/upload"`
+          UPLOAD_URL=$(echo $UPLOAD_JSON | jq .attributes.url)
+          UPLOAD_URL="${UPLOAD_URL:1:545}&directory=/world/datapacks"
+          curl -X POST -F files=@datapack.zip "$UPLOAD_URL"
+          echo "Uploaded the new datapack to the test server."
+
+      - name: Delete old release
+        uses: larryjoelane/delete-release-action@v1.0.22
+        with:
+          release-name: Datapack
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: Datapack
+          release_name: Datapack
+          body_path: ./RELEASE_CHANGELOG
+
+      - name: Upload resourcepack release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./datapack.zip
+          asset_name: AntiCheat.zip
+          asset_content_type: application/zip
