@@ -27,7 +27,7 @@ jobs:
           UPLOAD_URL="${UPLOAD_URL:1:545}&directory=/world/datapacks"
           curl -X POST -F files=@datapack.zip "$UPLOAD_URL"
           echo "Uploaded the new datapack to the test server."
-          curl -H "Authorization: Bearer $API_KEY" -X POST "https://webinterface.chaoshosting.tk/api/client/servers/$SERVER/command" -d '{"command":"reload"}'
+          curl -H "Authorization: Bearer $API_KEY" -X POST "https://webinterface.chaoshosting.tk/api/client/servers/$SERVER/command?command=reload"
           echo "Executed /reload after upload."
 
       - name: Delete old release
