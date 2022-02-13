@@ -30,7 +30,6 @@ execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @
 execute as @a at @s if block ~ ~ ~ bubble_column run scoreboard players remove @s swim 150
 execute as @a at @s if block ~ ~0.001 ~ water run scoreboard players set @s fly 1
 execute as @a at @s if block ~ ~0.001 ~ lava run scoreboard players set @s fly 1
-execute as @a at @s if block ~ ~0.001 ~ iron_trapdoor run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ ladder run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ vine run scoreboard players set @s fly 1
 execute as @a at @s if block ~ ~-1 ~ slime_block run scoreboard players remove @s fly 30
