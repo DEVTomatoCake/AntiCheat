@@ -32,8 +32,15 @@ execute as @a at @s if block ~ ~0.001 ~ water run scoreboard players set @s fly 
 execute as @a at @s if block ~ ~0.001 ~ lava run scoreboard players set @s fly 1
 execute as @a at @s if block ~ ~ ~ ladder run scoreboard players set @s fly 0
 execute as @a at @s if block ~ ~ ~ vine run scoreboard players set @s fly 1
+
 execute as @a at @s if block ~ ~-1 ~ slime_block run scoreboard players remove @s fly 30
+execute as @a at @s if block ~1 ~-1 ~ slime_block run scoreboard players remove @s fly 30
+execute as @a at @s if block ~-1 ~-1 ~ slime_block run scoreboard players remove @s fly 30
+execute as @a at @s if block ~ ~-1 ~1 slime_block run scoreboard players remove @s fly 30
+execute as @a at @s if block ~ ~-1 ~-1 slime_block run scoreboard players remove @s fly 30
 execute as @a at @s if block ~ ~-2 ~ slime_block run scoreboard players remove @s fly 20
+execute as @a at @s if block ~ ~-3 ~ slime_block run scoreboard players remove @s fly 20
+
 execute as @a at @s if block ~ ~-1.9 ~ packed_ice run scoreboard players remove @s run 15
 execute as @a at @s if block ~ ~-1.9 ~ ice run scoreboard players remove @s run 15
 execute as @a at @s if block ~ ~-1.9 ~ packed_ice run scoreboard players remove @s fly 23
@@ -126,11 +133,11 @@ scoreboard players set @a[scores={flags=23..}] flags 0
 
 execute as @a[scores={fly=15..}] at @s run tp @s @e[type=marker,tag=Marvin+,sort=nearest,limit=1]
 execute as @a[scores={fly=15..}] run tellraw @a[scores={notify=2..}] [{"text":"[sus™] ","color":"gray"},{"selector":"@s"},{"text":" wurde geflaggt {fly}","color":"gray"}]
-execute as @a[scores={fly=15..}] at @e[type=marker,tag=Marvin+,sort=nearest,limit=1] if block ~ ~-1 ~ air run tp @p ~ ~ ~
+execute as @a[scores={fly=15..}] at @e[type=marker,tag=Marvin+,sort=nearest,limit=1] if block ~ ~-1 ~ air run tp @s ~ ~ ~
 execute as @a[scores={fly=15..}] run scoreboard players remove @s fly 3
 
-execute as @a[scores={sneak=1..,run=35..}] run tp @s @s
-execute as @a[scores={sneak=1..,run=35..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:1} ","color":"red"},{"text":"[run,sneak] ","color":"red"},{"score":{"name":"@s","objective":"run"},"color":"green"}]
+execute as @a[scores={sneak=1..,run=35..},nbt=!{Inventory:[{Slot:101b,tag:{Enchantments:[{id:"minecraft:swift_sneak"}]}}]}] run tp @s @s
+execute as @a[scores={sneak=1..,run=35..},nbt=!{Inventory:[{Slot:101b,tag:{Enchantments:[{id:"minecraft:swift_sneak"}]}}]}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:1} ","color":"red"},{"text":"[run,sneak] ","color":"red"},{"score":{"name":"@s","objective":"run"},"color":"green"}]
 
 execute as @a[scores={sneak=1..,walk=20..}] run tp @s @s
 tellraw @a[scores={sneak=1..,walk=20..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"text":"Du sendest zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:2}","color":"yellow"}]
@@ -144,8 +151,8 @@ execute as @a[scores={sneak=1..,walk=1..,run=1..}] run tp @s @s
 tellraw @a[scores={sneak=1..,walk=1..,run=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"text":"Du sendest zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:4}","color":"dark_red"}] 
 execute as @a[scores={sneak=1..,walk=1..,run=1..}] run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] ","color":"white"},{"selector":"@s"},{"text":" sendet zu viele Pakete! ","color":"dark_red"},{"text":"{lvl:4} ","color":"dark_red"},{"text":"[run,walk,sneak]","color":"red"}]
 
-effect give @a[scores={sneak=1..,run=35..}] slowness 1 255 true
-effect give @a[scores={sneak=1..,run=35..}] jump_boost 1 244 true
+effect give @a[scores={sneak=1..,run=35..},nbt=!{Inventory:[{Slot:101b,tag:{Enchantments:[{id:"minecraft:swift_sneak"}]}}]}] slowness 1 255 true
+effect give @a[scores={sneak=1..,run=35..},nbt=!{Inventory:[{Slot:101b,tag:{Enchantments:[{id:"minecraft:swift_sneak"}]}}]}] jump_boost 1 244 true
 effect give @a[scores={sneak=1..,walk=20..}] slowness 2 255 true
 effect give @a[scores={sneak=1..,walk=20..}] jump_boost 2 244 true
 effect give @a[scores={sneak=1..,sneakcm=31..}] slowness 3 255 true
