@@ -22,6 +22,6 @@ execute as @a unless score @s notify matches 0.. run scoreboard players set @s n
 tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Anticheat wurde geladen!","color":"green"}]
 
 execute if score #ban settings matches 1.. store success score #banloaded settings run function anticheat:ban
-execute if score #ban settings matches 1.. if score #banloaded settings matches 0 run tellraw @a[scores={notify=1..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Ban-Modul konnte nicht geladen werden!","color":"red"}]
+execute if score #ban settings matches 1.. if score #banloaded settings matches 0 run tellraw @a[scores={notify=2..}] [{"text":"["},{"text":"sus","color":"aqua"},{"text":"™","color":"gold"},{"text":"] "},{"text":"Ban-Modul konnte nicht geladen werden!","color":"red"}]
 
 function anticheat:tick
