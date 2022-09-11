@@ -1,32 +1,34 @@
 {
-  "criteria": {
-    "requirement": {
-      "trigger": "minecraft:player_hurt_entity",
-      "conditions": {
-        "damage": {
-          "type": {
-            "is_magic": false,
-            "is_projectile": false
-          }
-        },
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "distance": {
-                "absolute": {
-                  "min": 5,
-                  "max": 9
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  },
-  "rewards": {
-    "function": "anticheat:range"
-  }
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:player_hurt_entity",
+			"conditions": {
+				"damage": {
+					"type": {
+						"is_explosion": false,
+						"is_magic": false,
+						"is_projectile": false,
+						"is_lightning": false
+					}
+				},
+				"entity": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"distance": {
+								"absolute": {
+									"min": 5,
+									"max": 9
+								}
+							}
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "anticheat:range"
+	}
 }
